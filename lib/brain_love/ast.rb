@@ -21,6 +21,7 @@ module BrainLove
     class DecrementByte < Node; end
     class OutputByte < Node; end
     class InputByte < Node; end
+    class Loop < Node; end
 
   end
 end
