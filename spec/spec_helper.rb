@@ -39,6 +39,6 @@ RSpec::Matchers.define :transform do |string_for_transforming|
   end
 
   description do
-    "transform #{string_for_transforming} to #{@node.inspect}"
+    "transform #{string_for_transforming} to AST node"
   end
 end
