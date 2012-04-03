@@ -8,7 +8,7 @@ module BrainLove
     PUTC      = 5
     GETC      = 6
     JMPFZ     = 7
-    JMPBZ     = 8
+    JMPBNZ    = 8
 
     attr_reader :ip, :dp, :code, :data
 
@@ -35,7 +35,7 @@ module BrainLove
           @data[@dp] = @input.getc.ord
         when JMPFZ
           @ip += @code[@ip + 1].ord - 1 if @data[@dp] == 0
-        when JMPBZ
+        when JMPBNZ
           unless @data[@dp] == 0
             @ip -= @code[@ip + 1].ord
           else

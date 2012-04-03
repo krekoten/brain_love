@@ -87,8 +87,8 @@ describe BrainLove::VM do
     end
   end
 
-  describe "JMPBZ" do
-    let(:code) { [BrainLove::VM::INC_BYTE, BrainLove::VM::DEC_BYTE, BrainLove::VM::JMPBZ, 0, BrainLove::VM::INC_BYTE].map(&:chr).join }
+  describe "JMPBNZ" do
+    let(:code) { [BrainLove::VM::INC_BYTE, BrainLove::VM::DEC_BYTE, BrainLove::VM::JMPBNZ, 0, BrainLove::VM::INC_BYTE].map(&:chr).join }
 
     it "jumps bacward unless current byte is 0" do
       expect { vm.execute }.to change { vm.data[0] }.by(1)
