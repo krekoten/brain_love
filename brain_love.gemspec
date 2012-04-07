@@ -16,5 +16,6 @@ Gem::Specification.new do |gem|
   gem.version       = BrainLove::VERSION
 
   gem.add_development_dependency "rspec"
+  gem.add_development_dependency "rake"
   gem.add_runtime_dependency "parslet"
 end
