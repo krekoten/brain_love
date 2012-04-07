@@ -1,10 +1,11 @@
 module BrainLove
   class Compiler
 
-    attr_reader :bytecode
+    attr_reader :bytecode, :ip
 
     def initialize
       @bytecode = ""
+      @ip = 0
     end
 
     def inc_dp
@@ -31,16 +32,58 @@ module BrainLove
       @bytecode << VM::GETC.chr
     end
 
-    def jmpfz(offset)
-      @bytecode << VM::JMPFZ.chr << offset.chr
+    def jmpfz(at, offset)
+      @bytecode[at] = VM::JMPFZ.chr
+      @bytecode[at + 1] = offset.chr
     end
 
     def jmpbnz(offset)
       @bytecode << VM::JMPBNZ.chr << offset.chr
     end
 
-    def offset
+    def noop
+      @bytecode << VM::NOOP
+    end
+
+    def current_ip
       @bytecode.bytesize
+    end
+
+    def visit_Statements(statements)
+      statements.value.each { |st| st.accept(self) }
+    end
+
+    def visit_Loop(_loop)
+      jmpf_ip = current_ip
+      noop
+      noop
+      _loop.value.accept(self)
+      jmpbnz(current_ip - jmpf_ip)
+      jmpfz(jmpf_ip, current_ip)
+    end
+
+    def visit_DecrementPointer(_)
+      dec_dp
+    end
+
+    def visit_IncrementPointer(_)
+      inc_dp
+    end
+
+    def visit_IncrementByte(_)
+      inc_byte
+    end
+
+    def visit_DecrementByte(_)
+      dec_byte
+    end
+
+    def visit_OutputByte(_)
+      putc
+    end
+
+    def visit_InputByte(_)
+      getc
     end
   end
 end

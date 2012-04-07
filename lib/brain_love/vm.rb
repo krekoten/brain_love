@@ -1,6 +1,7 @@
 module BrainLove
   class VM
 
+    NOOP      = 0
     INC_DP    = 1
     DEC_DP    = 2
     INC_BYTE  = 3
@@ -12,15 +13,54 @@ module BrainLove
 
     attr_reader :ip, :dp, :code, :data
 
-    def initialize(code, data = [0] * 30_000, input = STDIN, output = STDOUT)
-      @code, @data, @input, @output = code, data, input, output
+    def initialize(code, input, output)
+      @code, @input, @output = code, input, output
       @ip = 0
       @dp = 0
+      @data = [0] * 30_000
+    end
+
+    def code_dump
+      index = 0
+      @code.each_byte do |b|
+        print "#{index} "
+        index += 1
+        case b
+        when NOOP
+          puts "NOOP"
+        when INC_DP
+          puts "INC_DP"
+        when DEC_DP
+          puts "DEC_DP"
+        when INC_BYTE
+          puts "INC_BYTE"
+        when DEC_BYTE
+          puts "DEC_BYTE"
+        when PUTC
+          puts "PUTC"
+        when GETC
+          puts "GETC"
+        when JMPFZ
+          puts "JMPFZ"
+          @jmp = true
+        when JMPBNZ
+          puts "JMPBNZ"
+          @jmp = true
+        else
+          if @jmp
+            @jmp = false
+            puts " offset #{b}"
+          else
+            puts "UNKNOWN BYTECODE"
+          end
+        end
+      end
     end
 
     def execute
       while @ip < @code.bytesize do
         case @code[@ip].ord
+        when NOOP
         when INC_DP
           @dp += 1
         when DEC_DP
@@ -32,7 +72,7 @@ module BrainLove
         when PUTC
           @output.putc(@data[@dp].chr)
         when GETC
-          @data[@dp] = @input.getc.ord
+          @data[@dp] = (@input.getc || 0).ord
         when JMPFZ
           @ip += @code[@ip + 1].ord - 1 if @data[@dp] == 0
         when JMPBNZ

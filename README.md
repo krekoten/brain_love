@@ -1,6 +1,6 @@
 # BrainLove
 
-TODO: Write a gem description
+Ruby implementation of [brainfuck](http://esolangs.org/wiki/Brainfuck).
 
 ## Installation
 
@@ -10,7 +10,32 @@ Install it as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Standalone
+
+    # Hello World
+    brain_love -e '>+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.>>>++++++++[<++++>-]<.>>>++++++++++[<+++++++++>-]<---.<<<<.+++.------.--------.>>+.'
+
+Or from file:
+
+    brain_love some_file.bf
+
+### In your code
+
+    require 'brain_love'
+
+    # Hello World
+    BrainLove.run_string('>+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.>>>++++++++[<++++>-]<.>>>++++++++++[<+++++++++>-]<---.<<<<.+++.------.--------.>>+.')
+
+## Portability
+
+ * Data space contains 30 000 cells
+ * Data cell is unsigned byte (wraps around)
+ * EOF sets data cell to 0
+ * Nested loops
+
+## Current limitations
+
+ * jump offsets are 1 byte
 
 ## Contributing
 
@@ -19,3 +44,7 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## License
+
+Copyright (c) 2012 Мар'ян Крекотень (Marjan Krekoten'). Distributed under the MIT License. See LICENSE for further details.

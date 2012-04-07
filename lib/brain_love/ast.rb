@@ -12,6 +12,10 @@ module BrainLove
         self.class == other.class &&
         self.value == other.value
       end
+
+      def accept(visitor)
+        visitor.send("visit_#{self.class.to_s.split('::').last}", self)
+      end
     end
 
     class Statements < Node; end

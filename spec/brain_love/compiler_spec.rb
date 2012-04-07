@@ -38,7 +38,7 @@ describe BrainLove::Compiler do
   end
 
   it "emits JMPFZ" do
-    compiler.jmpfz(0)
+    compiler.jmpfz(0, 0)
     compiler.bytecode.should == bytecode(BrainLove::VM::JMPFZ, 0)
   end
 

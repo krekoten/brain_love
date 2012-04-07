@@ -7,8 +7,16 @@ module BrainLove
     rule(:output_byte       => simple(:_))  { AST::OutputByte.new }
     rule(:input_byte        => simple(:_))  { AST::InputByte.new }
 
-    rule(:loop => simple(:statements)) do
-      AST::Loop.new(statements)
+    rule(:loop => simple(:_)) do
+      AST::Loop.new
+    end
+
+    rule(:loop => sequence(:statements)) do
+      AST::Loop.new(statements.first)
+    end
+
+    rule :statements => simple(:statements) do
+      AST::Statements.new([statements])
     end
 
     rule :statements => sequence(:statements) do

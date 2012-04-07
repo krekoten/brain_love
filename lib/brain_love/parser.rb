@@ -21,8 +21,8 @@ module BrainLove
     end
 
     rule(:commands)           { command.repeat(1) }
-    rule(:_loop)              { (jump_forward >> (commands | _loop).repeat.as(:statements) >> jump_backward).as(:loop) }
+    rule(:_loop)              { (jump_forward >> (commands | _loop).as(:statements).repeat >> jump_backward).as(:loop) }
 
-    rule(:root)               { (_loop | commands).repeat.as(:statements) }
+    rule(:root)               { (commands | _loop).as(:statements).repeat.as(:statements) }
   end
 end

@@ -2,10 +2,9 @@ require 'spec_helper'
 require 'stringio'
 
 describe BrainLove::VM do
-  let(:data) { [0] * 100 }
   let(:input) { double('input stream') }
   let(:output) { double('output stream') }
-  let(:vm) { BrainLove::VM.new(code, data, input, output) }
+  let(:vm) { BrainLove::VM.new(code, input, output) }
 
   describe "initial state" do
     let(:code) { [].join }
