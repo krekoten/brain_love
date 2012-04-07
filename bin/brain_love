@@ -29,5 +29,5 @@ end
 if code = options[:execute]
   BrainLove.run_string(code)
 elsif !ARGV.empty? && options[:execute].nil?
-  ARGV.each { |_| BrainLove.run_file(_) }
+  ARGV.each { |file| BrainLove.run_file(file) }
 end
