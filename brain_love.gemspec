@@ -4,9 +4,9 @@ require File.expand_path('../lib/brain_love/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Marjan Krekoten' (Мар'ян Крекотень)"]
   gem.email         = ["krekoten@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Brainfuck implementation for fun and love}
+  gem.summary       = %q{Brainfuck}
+  gem.homepage      = "http://krekoten.github.com/brain_love"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
