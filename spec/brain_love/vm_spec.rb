@@ -40,6 +40,12 @@ describe BrainLove::VM do
     it "increments the byte at the pointer by one" do
       expect { vm.execute }.to change { vm.data[1] }.by(1)
     end
+
+    it "wraps around value" do
+      code = Array.new(256, BrainLove::VM::INC_BYTE).map(&:chr).join
+      vm = BrainLove::VM.new(code, input, output)
+      expect { vm.execute }.to change { vm.data[0] }.by(1)
+    end
   end
 
   describe "DEC_BYTE" do
@@ -47,6 +53,12 @@ describe BrainLove::VM do
 
     it "decrements the byte at the pointer by one" do
       expect { vm.execute }.to change { vm.data[1] }.by(1)
+    end
+
+    it "wraps around value" do
+      code = BrainLove::VM::DEC_BYTE.chr
+      vm = BrainLove::VM.new(code, input, output)
+      expect { vm.execute }.to change { vm.data[0] }.by(255)
     end
   end
 

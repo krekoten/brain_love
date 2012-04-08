@@ -66,8 +66,10 @@ module BrainLove
         when DEC_DP
           @dp -= 1
         when INC_BYTE
+          @data[@dp] = 0 if @data[@dp] == 255
           @data[@dp] += 1
         when DEC_BYTE
+          @data[@dp] = 256 if @data[@dp] == 0
           @data[@dp] -= 1
         when PUTC
           @output.putc(@data[@dp].chr)
