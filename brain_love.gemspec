@@ -15,6 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = BrainLove::VERSION
 
+  gem.required_ruby_version = '>= 1.9.2'
+
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "rake"
   gem.add_runtime_dependency "parslet"
