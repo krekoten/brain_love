@@ -44,12 +44,12 @@
 <h3>Standalone</h3>
 
 <pre><code># Hello World
-brain_love -e '&gt;+++++++++[&lt;++++++++&gt;-]&lt;.&gt;+++++++[&lt;++++&gt;-]&lt;+.+++++++..+++.&gt;&gt;&gt;++++++++[&lt;++++&gt;-]&lt;.&gt;&gt;&gt;++++++++++[&lt;+++++++++&gt;-]&lt;---.&lt;&lt;&lt;&lt;.+++.------.--------.&gt;&gt;+.'
+$ brain_love -e '&gt;+++++++++[&lt;++++++++&gt;-]&lt;.&gt;+++++++[&lt;++++&gt;-]&lt;+.+++++++..+++.&gt;&gt;&gt;++++++++[&lt;++++&gt;-]&lt;.&gt;&gt;&gt;++++++++++[&lt;+++++++++&gt;-]&lt;---.&lt;&lt;&lt;&lt;.+++.------.--------.&gt;&gt;+.'
 </code></pre>
 
 <p>Or from file:</p>
 
-<pre><code>brain_love some_file.bf
+<pre><code>$ brain_love some_file.bf
 </code></pre>
 
 <h3>In your code</h3>
@@ -69,6 +69,7 @@ brain_love -e '&gt;+++++++++[&lt;++++++++&gt;-]&lt;.&gt;+++++++[&lt;++++&gt;-]&l
 <li>Data cell is unsigned byte (wraps around)</li>
 <li>EOF sets data cell to 0</li>
 <li>Nested loops</li>
+<li>All unknown characters are considered as comments</li>
 </ul><h2>Current limitations</h2>
 
 <ul>
