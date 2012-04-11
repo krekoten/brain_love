@@ -1,3 +1,5 @@
+require 'pp'
+
 module BrainLove
   class Transformer < Parslet::Transform
     rule(:increment_pointer => simple(:_))  { AST::IncrementPointer.new }
@@ -7,20 +9,17 @@ module BrainLove
     rule(:output_byte       => simple(:_))  { AST::OutputByte.new }
     rule(:input_byte        => simple(:_))  { AST::InputByte.new }
 
-    rule(:loop => simple(:_)) do
-      AST::Loop.new
+    # Hm, still feels ugly but better than was :)
+    rule(:comment => simple(:_)) do
+      nil
     end
 
-    rule(:loop => sequence(:statements)) do
-      AST::Loop.new(statements.first)
-    end
-
-    rule :statements => simple(:statements) do
-      AST::Statements.new([statements])
+    rule(:loop => simple(:statements)) do
+      AST::Loop.new(statements)
     end
 
     rule :statements => sequence(:statements) do
-      AST::Statements.new(statements)
+      AST::Statements.new(statements.compact)
     end
   end
 end

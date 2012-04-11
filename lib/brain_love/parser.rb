@@ -20,9 +20,16 @@ module BrainLove
       input_byte
     end
 
-    rule(:commands)           { command.repeat(1) }
-    rule(:_loop)              { (jump_forward >> (commands | _loop).as(:statements).repeat >> jump_backward).as(:loop) }
+    rule :comment do
+      (command | jump_forward | jump_backward).absnt? >> any.as(:comment)
+    end
 
-    rule(:root)               { (commands | _loop).as(:statements).repeat.as(:statements) }
+    rule :_loop do
+      (jump_forward >> root >> jump_backward).as(:loop)
+    end
+
+    rule :root do
+      (comment | command | _loop).repeat.as(:statements)
+    end
   end
 end

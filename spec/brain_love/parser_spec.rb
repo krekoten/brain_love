@@ -55,6 +55,7 @@ describe BrainLove::Parser do
     it { should parse('++[]') }
     it { should parse('[[]]') }
     it { should parse('[[++]++]>.') }
+    it { should parse('this is comments and produces no error') }
 
     it { should_not parse('[') }
     it { should_not parse(']') }
