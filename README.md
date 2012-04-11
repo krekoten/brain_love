@@ -6,18 +6,24 @@ Ruby implementation of [brainfuck](http://esolangs.org/wiki/Brainfuck).
 
 Install it as:
 
-    $ gem install brain_love
+```
+$ gem install brain_love
+```
 
 ## Usage
 
 ### Standalone
 
-    # Hello World
-    brain_love -e '>+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.>>>++++++++[<++++>-]<.>>>++++++++++[<+++++++++>-]<---.<<<<.+++.------.--------.>>+.'
+```
+# Hello World
+$ brain_love -e '>+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.>>>++++++++[<++++>-]<.>>>++++++++++[<+++++++++>-]<---.<<<<.+++.------.--------.>>+.'
+```
 
 Or from file:
 
-    brain_love some_file.bf
+```
+$ brain_love some_file.bf
+```
 
 ### In your code
 
@@ -34,6 +40,7 @@ BrainLove.run_string('>+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.
  * Data cell is unsigned byte (wraps around)
  * EOF sets data cell to 0
  * Nested loops
+ * All unknown characters are considered as comments
 
 ## Current limitations
 
