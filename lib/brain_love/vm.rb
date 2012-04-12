@@ -21,7 +21,7 @@ module BrainLove
     end
 
     def code_dump
-      index = 0
+      index = 0, jmp = false
       @code.each_byte do |b|
         print "#{index} "
         index += 1
@@ -42,13 +42,13 @@ module BrainLove
           puts "GETC"
         when JMPFZ
           puts "JMPFZ"
-          @jmp = true
+          jmp = true
         when JMPBNZ
           puts "JMPBNZ"
-          @jmp = true
+          jmp = true
         else
-          if @jmp
-            @jmp = false
+          if jmp
+            jmp = false
             puts " offset #{b}"
           else
             puts "UNKNOWN BYTECODE"
