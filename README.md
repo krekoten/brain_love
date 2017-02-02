@@ -56,4 +56,4 @@ BrainLove.run_string('>+++++++++[<++++++++>-]<.>+++++++[<++++>-]<+.+++++++..+++.
 
 ## License
 
-Copyright (c) 2012 Мар'ян Крекотень (Marjan Krekoten'). Distributed under the MIT License. See LICENSE for further details.
+Copyright (c) 2012-2017 Мар'ян Крекотень (Marjan Krekoten'). Distributed under the MIT License. See LICENSE for further details.
